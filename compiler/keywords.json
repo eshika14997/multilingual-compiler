@@ -1,0 +1,19 @@
+{
+  "languages": {
+    "en": {
+      "INT": "int", "FLOAT": "float", "SET": "set", "PRINT": "print",
+      "IF": "if", "ELSE": "else", "END_IF": "end_if",
+      "WHILE": "while", "END_WHILE": "end_while"
+    },
+    "hi": {
+      "INT": "पूर्णांक", "FLOAT": "दशमलव", "SET": "मान", "PRINT": "प्रिंट",
+      "IF": "यदि", "ELSE": "अन्यथा", "END_IF": "समाप्त_यदि",
+      "WHILE": "जब_तक", "END_WHILE": "समाप्त_जब_तक"
+    },
+    "gu": {
+      "INT": "પૂર્ણાંક", "FLOAT": "દશાંશ", "SET": "સેટ", "PRINT": "પ્રિન્ટ",
+      "IF": "જો", "ELSE": "નહીંતર", "END_IF": "સમાપ્ત_જો",
+      "WHILE": "જ્યાં_સુધી", "END_WHILE": "સમાપ્ત_જ્યાં_સુધી"
+    }
+  }
+}
