@@ -1,0 +1,9 @@
+// Sum of 1 to 5
+पूर्णांक i = 1;
+पूर्णांक total = 0;
+जब_तक i <= 5
+  मान total = total + i;
+  मान i = i + 1;
+समाप्त_जब_तक
+दशमलव avg = total / 5.0;
+प्रिंट "Total : ", total, "  Average : ", avg;

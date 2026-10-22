@@ -1,6 +1,5 @@
-// दो संख्याओं का योग
+// Sum of two numbers
 पूर्णांक a = 10;
 पूर्णांक b = 20;
 पूर्णांक sum = a + b;
-प्रिंट "Sum of two number : ";
-प्रिंट sum;
+प्रिंट "Sum of two number : ", sum;

@@ -1,0 +1,8 @@
+// Print the bigger number
+પૂર્ણાંક a = 15;
+પૂર્ણાંક b = 8;
+જો a > b
+  પ્રિન્ટ "Bigger number : ", a;
+નહીંતર
+  પ્રિન્ટ "Bigger number : ", b;
+સમાપ્ત_જો

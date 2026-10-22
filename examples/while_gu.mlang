@@ -1,0 +1,9 @@
+// Sum of 1 to 5
+પૂર્ણાંક i = 1;
+પૂર્ણાંક total = 0;
+જ્યાં_સુધી i <= 5
+  સેટ total = total + i;
+  સેટ i = i + 1;
+સમાપ્ત_જ્યાં_સુધી
+દશાંશ avg = total / 5.0;
+પ્રિન્ટ "Total : ", total, "  Average : ", avg;

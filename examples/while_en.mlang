@@ -1,0 +1,9 @@
+// Sum of 1 to 5
+int i = 1;
+int total = 0;
+while i <= 5
+  set total = total + i;
+  set i = i + 1;
+end_while
+float avg = total / 5.0;
+print "Total : ", total, "  Average : ", avg;

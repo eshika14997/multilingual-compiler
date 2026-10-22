@@ -16,6 +16,7 @@ class KeywordDictionary:
     def __init__(self, path: str = _PATH):
         with open(path, encoding="utf-8") as f:
             data = json.load(f)["languages"]
+        self.table = data
         self.languages = list(data.keys())
         self.canonicals = set()
         self.reverse = {}
@@ -36,3 +37,7 @@ class KeywordDictionary:
 
     def lookup(self, word: str):
         return self.reverse.get(nfc(word))
+
+    def word(self, lang: str, canonical: str) -> str:
+        """Keyword as written in a given language (used for friendly error messages)."""
+        return self.table.get(lang, self.table["en"]).get(canonical, canonical)

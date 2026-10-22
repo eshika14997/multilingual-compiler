@@ -1,6 +1,5 @@
-// બે સંખ્યાનો સરવાળો
+// Sum of two numbers
 પૂર્ણાંક a = 10;
 પૂર્ણાંક b = 20;
 પૂર્ણાંક sum = a + b;
-પ્રિન્ટ "Sum of two number : ";
-પ્રિન્ટ sum;
+પ્રિન્ટ "Sum of two number : ", sum;

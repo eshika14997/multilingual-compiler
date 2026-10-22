@@ -1,5 +1,8 @@
+// Print the bigger number
+पूर्णांक a = 15;
+पूर्णांक b = 8;
 यदि a > b
-  प्रिंट a;
+  प्रिंट "Bigger number : ", a;
 अन्यथा
-  प्रिंट b;
+  प्रिंट "Bigger number : ", b;
 समाप्त_यदि

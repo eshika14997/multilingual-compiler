@@ -91,7 +91,7 @@ class Lexer:
                 add("OP", s[i:i + 2], line, sc); i += 2; col += 2; continue
             if ch in ONE_CHAR_OPS:
                 add("OP", ch, line, sc); i += 1; col += 1; continue
-            single = {";": "SEMI", "(": "LPAREN", ")": "RPAREN"}
+            single = {";": "SEMI", "(": "LPAREN", ")": "RPAREN", ",": "COMMA"}
             if ch in single:
                 add(single[ch], ch, line, sc); i += 1; col += 1; continue
             self.errors.append(CompileError("LEXICAL", f"Unexpected character '{ch}'", line, sc))
