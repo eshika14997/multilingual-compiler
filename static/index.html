@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multilingual Programming Language Compiler</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Multilingual Programming Language Compiler</h1>
+    <p class="sub">English · हिन्दी · ગુજરાતી &nbsp;—&nbsp; different keywords, same program</p>
+  </header>
+
+  <section class="toolbar">
+    <label>Language
+      <select id="lang">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="gu">ગુજરાતી (Gujarati)</option>
+      </select>
+    </label>
+    <label>Language policy
+      <select id="policy">
+        <option value="strict">Strict (one language)</option>
+        <option value="mixed">Mixed allowed</option>
+      </select>
+    </label>
+    <label>Example
+      <select id="example"></select>
+    </label>
+    <button id="run" class="primary" title="Ctrl/Cmd + Enter">▶ Run</button>
+    <button id="compare">⇄ Compare 3 languages</button>
+    <label class="check"><input type="checkbox" id="autoSpeak"> Read output aloud</label>
+  </section>
+
+  <main class="grid">
+    <section class="card">
+      <div class="card-head">
+        <h2>Program</h2>
+        <div class="actions">
+          <button id="mic" title="Dictate code by voice">🎤 Speak</button>
+          <button id="clear" title="Clear editor">Clear</button>
+        </div>
+      </div>
+      <div id="chips" class="chips" aria-label="Keywords for the selected language"></div>
+      <textarea id="code" spellcheck="false" aria-label="Program source code"
+                placeholder="Write code here, or press 🎤 and speak…"></textarea>
+      <div id="interim" class="interim" aria-live="polite"></div>
+      <p id="micStatus" class="hint"></p>
+      <p id="voiceStatus" class="hint"></p>
+      <details class="help">
+        <summary>Voice cheat-sheet</summary>
+        <p>Say keywords normally (e.g. “print”, “प्रिंट”, “પ્રિન્ટ”). Say symbols by name:
+          <b>semicolon</b> → <code>;</code>, <b>equals</b> → <code>=</code>, <b>plus</b>, <b>minus</b>, <b>times</b>,
+          <b>greater than</b>, <b>less than</b>, <b>comma</b>, <b>quote … quote</b>, <b>new line</b>.
+          Hindi: <b>सेमीकोलन, बराबर, प्लस, नई लाइन</b>. Gujarati: <b>સેમીકોલન, બરાબર, પ્લસ, નવી લાઇન</b>.
+          Say <b>run</b> / <b>चलाओ</b> / <b>ચલાવો</b> to run, <b>clear</b> to clear.
+          Keywords from any language are converted to the selected language automatically.</p>
+      </details>
+    </section>
+
+    <section class="card">
+      <div id="pipeline" class="pipeline" aria-label="Compiler stages"></div>
+      <ul id="errors" class="errors" hidden></ul>
+      <div id="tabs" class="tabs" role="tablist"></div>
+
+      <div id="panel-output" class="panel">
+        <div class="panel-actions">
+          <button id="speakOut">🔊 Read output</button>
+          <button id="stopSpeak">⏹ Stop</button>
+        </div>
+        <pre id="outputBox" class="out">Press ▶ Run to compile and execute your program.</pre>
+      </div>
+      <div id="panel-tokens" class="panel" hidden>
+        <p class="label">Normalized token stream (identical for every language):</p>
+        <pre id="normBox"></pre>
+        <div class="table-wrap"><table id="tokTable"></table></div>
+      </div>
+      <div id="panel-ast" class="panel" hidden><pre id="astBox"></pre></div>
+      <div id="panel-ir" class="panel" hidden><pre id="irBox"></pre></div>
+      <div id="panel-c" class="panel" hidden><pre id="cBox"></pre></div>
+      <div id="panel-compare" class="panel" hidden><div id="compareBox">Press “Compare 3 languages”.</div></div>
+    </section>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="/static/speech.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

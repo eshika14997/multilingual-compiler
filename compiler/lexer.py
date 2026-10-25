@@ -38,7 +38,7 @@ class Lexer:
         s, i, line, col, n = self.src, 0, 1, 1, len(self.src)
 
         def add(t, v, ln, cl, lex="", lang=None):
-            self.tokens.append(Token(t, v, ln, cl, lex or v, lang))
+            self.tokens.append(Token(t, v, ln, cl, lex or v, lang, i))
 
         while i < n:
             ch = s[i]

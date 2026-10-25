@@ -10,6 +10,7 @@ class Token:
     col: int
     lexeme: str = ""           # original text written by the user
     lang: Optional[str] = None # language of keyword (en/hi/gu); None for non-keywords
+    pos: int = 0               # character offset in the (NFC-normalized) source
 
     def short(self):
         if self.type == "KEYWORD":
