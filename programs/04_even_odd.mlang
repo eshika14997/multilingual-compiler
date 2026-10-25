@@ -1,0 +1,9 @@
+// Title: Even or odd
+// Category: Basics
+// A number is even if the remainder after dividing by 2 is 0
+int n = 7;
+if n % 2 == 0
+  print n, " is Even";
+else
+  print n, " is Odd";
+end_if

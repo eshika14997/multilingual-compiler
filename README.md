@@ -12,6 +12,11 @@ Web UI: Flask backend + browser speech-to-text and text-to-speech (Web Speech AP
     python3 compare.py                      # EN = HI = GU proof
     python3 -m unittest discover -s tests -v
 
+## Program library
+20 ready-made programs live in programs/*.mlang (English source; Hindi and Gujarati versions are
+generated automatically). Add your own: create programs/21_name.mlang starting with
+`// Title: ...` and `// Category: ...` lines. The web page also has a "Write my own program" option.
+
 ## Language
     int a = 10;   float f = 2.5;   set a = a + 1;   a = a + 1;
     print "text", a;

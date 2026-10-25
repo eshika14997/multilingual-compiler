@@ -22,7 +22,8 @@ class AppTests(unittest.TestCase):
     def test_keywords_and_examples(self):
         self.assertEqual(set(self.c.get("/api/keywords").json), {"en", "hi", "gu"})
         ex = self.c.get("/api/examples").json
-        self.assertEqual(len(ex), 3)
+        self.assertEqual(len(ex), 20)
+        self.assertEqual(len({x["id"] for x in ex}), 20)
         self.assertTrue(all(k in ex[0] for k in ("en", "hi", "gu")))
 
     @unittest.skipUnless(HAS_CC, "no C compiler")

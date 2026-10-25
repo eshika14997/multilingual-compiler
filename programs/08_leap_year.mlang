@@ -1,0 +1,21 @@
+// Title: Leap year check
+// Category: Decision making
+// Divisible by 400, or by 4 but not by 100
+int year = 2024;
+int leap = 0;
+if year % 400 == 0
+  set leap = 1;
+else
+  if year % 100 == 0
+    set leap = 0;
+  else
+    if year % 4 == 0
+      set leap = 1;
+    end_if
+  end_if
+end_if
+if leap == 1
+  print year, " is a Leap Year";
+else
+  print year, " is not a Leap Year";
+end_if

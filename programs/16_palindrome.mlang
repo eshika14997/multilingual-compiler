@@ -1,0 +1,17 @@
+// Title: Palindrome number
+// Category: Number programs
+// A palindrome reads the same forwards and backwards
+int n = 12321;
+int temp = n;
+int rev = 0;
+int digit = 0;
+while temp > 0
+  set digit = temp % 10;
+  set rev = rev * 10 + digit;
+  set temp = temp / 10;
+end_while
+if rev == n
+  print n, " is a Palindrome";
+else
+  print n, " is not a Palindrome";
+end_if

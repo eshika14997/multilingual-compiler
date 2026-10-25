@@ -1,0 +1,20 @@
+// Title: Prime number check
+// Category: Number programs
+// A prime has no divisor between 2 and n - 1
+int n = 29;
+int isPrime = 1;
+int i = 2;
+if n < 2
+  set isPrime = 0;
+end_if
+while i < n
+  if n % i == 0
+    set isPrime = 0;
+  end_if
+  set i = i + 1;
+end_while
+if isPrime == 1
+  print n, " is a Prime number";
+else
+  print n, " is not a Prime number";
+end_if

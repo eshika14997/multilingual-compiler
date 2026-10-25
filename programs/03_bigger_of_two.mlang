@@ -1,0 +1,10 @@
+// Title: Bigger of two numbers
+// Category: Basics
+// if / else example
+int a = 15;
+int b = 8;
+if a > b
+  print "Bigger number : ", a;
+else
+  print "Bigger number : ", b;
+end_if

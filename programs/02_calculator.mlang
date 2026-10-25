@@ -1,0 +1,13 @@
+// Title: Calculator (+ - * / %)
+// Category: Basics
+// Simple calculator: change a and b
+int a = 17;
+int b = 5;
+print "Addition       : ", a + b;
+print "Subtraction    : ", a - b;
+print "Multiplication : ", a * b;
+print "Division       : ", a / b;
+print "Remainder      : ", a % b;
+float x = 17.0;
+float y = 5.0;
+print "Exact division : ", x / y;

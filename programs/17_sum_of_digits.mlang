@@ -1,0 +1,11 @@
+// Title: Sum of digits
+// Category: Number programs
+// 1 + 2 + 3 + 4 + 5
+int n = 12345;
+int temp = n;
+int total = 0;
+while temp > 0
+  set total = total + temp % 10;
+  set temp = temp / 10;
+end_while
+print "Sum of digits of ", n, " = ", total;

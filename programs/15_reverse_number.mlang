@@ -1,0 +1,13 @@
+// Title: Reverse a number
+// Category: Number programs
+// Take the last digit again and again
+int n = 12345;
+int temp = n;
+int rev = 0;
+int digit = 0;
+while temp > 0
+  set digit = temp % 10;
+  set rev = rev * 10 + digit;
+  set temp = temp / 10;
+end_while
+print "Reverse of ", n, " is ", rev;

@@ -1,0 +1,7 @@
+// Title: Sum of two numbers
+// Category: Basics
+// Change the numbers and press Run
+int a = 10;
+int b = 20;
+int sum = a + b;
+print "Sum of two number : ", sum;

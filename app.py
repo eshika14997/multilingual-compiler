@@ -4,15 +4,15 @@ from flask import Flask, jsonify, request, send_from_directory
 from compiler.pipeline import compile_source
 from compiler.dictionary import KeywordDictionary
 from compiler.translate import translate, compare_languages
+from compiler.library import load_library
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 LANGS = ("en", "hi", "gu")
 MAX_SOURCE = 5000
-EXAMPLES = [("sum", "Sum of two numbers"), ("if", "Bigger number (if / else)"),
-            ("while", "Sum of 1 to 5 (while loop)")]
 
 app = Flask(__name__, static_folder=os.path.join(ROOT, "static"), static_url_path="/static")
 DICT = KeywordDictionary()
+LIBRARY = load_library()   # 20 ready-made programs (en / hi / gu)
 
 
 def read_json():
@@ -41,15 +41,7 @@ def keywords():
 
 @app.get("/api/examples")
 def examples():
-    out = []
-    for name, title in EXAMPLES:
-        item = {"id": name, "title": title}
-        for lang in LANGS:
-            path = os.path.join(ROOT, "examples", f"{name}_{lang}.mlang")
-            with open(path, encoding="utf-8") as f:
-                item[lang] = f.read()
-        out.append(item)
-    return jsonify(out)
+    return jsonify(LIBRARY)
 
 
 @app.post("/api/compile")

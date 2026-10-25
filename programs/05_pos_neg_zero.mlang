@@ -1,0 +1,13 @@
+// Title: Positive, negative or zero
+// Category: Basics
+// Nested if / else
+int n = -5;
+if n > 0
+  print n, " is Positive";
+else
+  if n < 0
+    print n, " is Negative";
+  else
+    print n, " is Zero";
+  end_if
+end_if

@@ -1,0 +1,11 @@
+// Title: Sum of 1 to N
+// Category: Loops
+// while loop: add 1 + 2 + ... + n
+int n = 10;
+int i = 1;
+int total = 0;
+while i <= n
+  set total = total + i;
+  set i = i + 1;
+end_while
+print "Sum of 1 to ", n, " = ", total;

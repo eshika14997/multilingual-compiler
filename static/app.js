@@ -12,7 +12,8 @@
   const STAGE_LABELS = ["Lexer", "Parser", "Semantic", "IR", "C code", "Run"];
   const TABS = [["output", "Output"], ["tokens", "Tokens"], ["ast", "AST"], ["ir", "IR"], ["c", "C code"], ["compare", "Compare"]];
 
-  const state = { lang: "en", keywords: null, examples: [], phraseMap: null, listening: false, last: null };
+  const CUSTOM = "__custom__";
+  const state = { lang: "en", keywords: null, examples: [], phraseMap: null, listening: false, last: null, loaded: "", prevExample: "" };
   const code = $("#code");
 
   // ---------- helpers ----------
@@ -49,6 +50,16 @@
     code.value = before + ins + code.value.slice(end);
     code.selectionStart = code.selectionEnd = start + ins.length;
     code.focus();
+    markEdited();
+  }
+
+  // When the user changes an example, show that it is now their own program.
+  function markEdited() {
+    const sel = $("#example");
+    if (sel.value !== CUSTOM && code.value !== state.loaded) {
+      sel.value = CUSTOM;
+      state.prevExample = CUSTOM;
+    }
   }
 
   function goToLine(line) {
@@ -162,8 +173,10 @@
     const next = $("#lang").value;
     if (next === state.lang) return;
     state.lang = next;
-    if (code.value.trim()) {
-      try {
+    if ($("#example").value !== CUSTOM) {
+      loadExample();                         // ready-made program: load it in the new language
+    } else if (code.value.trim()) {
+      try {                                  // own program: convert its keywords
         const r = await api("/api/translate", { source: code.value, lang: next, policy: "mixed" });
         if (r.ok) { code.value = r.source; toast("Keywords converted to " + LANG_NAMES[next]); }
         else toast("Could not convert keywords — fix lexical errors first");
@@ -172,10 +185,41 @@
     refreshLangUi();
   }
 
+  function buildExampleSelect() {
+    const groups = {};
+    state.examples.forEach((x) => (groups[x.category] = groups[x.category] || []).push(x));
+    let html = `<option value="${CUSTOM}">✏️ Write my own program</option>`;
+    Object.entries(groups).forEach(([cat, items]) => {
+      html += `<optgroup label="${esc(cat)}">` +
+        items.map((x) => `<option value="${esc(x.id)}">${esc(x.title)}</option>`).join("") + "</optgroup>";
+    });
+    $("#example").innerHTML = html;
+  }
+
+  function starter(lang) {
+    const k = state.keywords[lang];
+    return `// Write your program here\n${k.INT} a = 10;\n${k.PRINT} "Value : ", a;\n`;
+  }
+
   function loadExample() {
-    const i = $("#example").selectedIndex;
-    const ex = state.examples[i];
-    if (ex) code.value = ex[state.lang];
+    const id = $("#example").value;
+    if (id === CUSTOM) {
+      code.value = state.loaded = starter(state.lang);
+      code.focus();
+    } else {
+      const ex = state.examples.find((x) => x.id === id);
+      if (ex) code.value = state.loaded = ex[state.lang];
+    }
+    state.prevExample = id;
+  }
+
+  function onExampleChange() {
+    const unsaved = code.value.trim() && code.value !== state.loaded;
+    if (unsaved && !confirm("Replace the code in the editor?")) {
+      $("#example").value = state.prevExample;
+      return;
+    }
+    loadExample();
   }
 
   // ---------- text to speech ----------
@@ -245,7 +289,7 @@
         if (!res.isFinal) { interim += text; continue; }
         const cmd = MLCSpeech.detectCommand(text);
         if (cmd === "run") { toast("Voice command: run"); runProgram(); }
-        else if (cmd === "clear") { code.value = ""; toast("Voice command: clear"); }
+        else if (cmd === "clear") { code.value = ""; markEdited(); toast("Voice command: clear"); }
         else insertAtCursor(MLCSpeech.processSpeech(text, state.phraseMap));
       }
       $("#interim").textContent = interim;
@@ -283,15 +327,17 @@
       [state.keywords, state.examples] = await Promise.all([api("/api/keywords"), api("/api/examples")]);
     } catch (e) { toast("Could not reach the server: " + e.message); return; }
 
-    $("#example").innerHTML = state.examples.map((x) => `<option>${esc(x.title)}</option>`).join("");
+    buildExampleSelect();
+    $("#example").value = state.examples[0].id;
     loadExample();
     refreshLangUi();
 
     $("#lang").addEventListener("change", onLangChange);
-    $("#example").addEventListener("change", loadExample);
+    $("#example").addEventListener("change", onExampleChange);
+    code.addEventListener("input", markEdited);
     $("#run").addEventListener("click", runProgram);
     $("#compare").addEventListener("click", runCompare);
-    $("#clear").addEventListener("click", () => { code.value = ""; code.focus(); });
+    $("#clear").addEventListener("click", () => { code.value = ""; code.focus(); markEdited(); });
     $("#mic").addEventListener("click", () => (state.listening ? stopListening() : startListening()));
     $("#speakOut").addEventListener("click", () => speakResult(state.last));
     $("#stopSpeak").addEventListener("click", () => hasTTS && speechSynthesis.cancel());

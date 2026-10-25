@@ -1,0 +1,10 @@
+// Title: Simple interest
+// Category: Formulas
+// Interest = principal x rate x time / 100
+float principal = 5000.0;
+float rate = 7.5;
+float time = 2.0;
+float interest = principal * rate * time / 100;
+print "Simple Interest : ", interest;
+float total = principal + interest;
+print "Total Amount    : ", total;

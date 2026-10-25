@@ -1,0 +1,6 @@
+// Title: Celsius to Fahrenheit
+// Category: Formulas
+// F = C x 9 / 5 + 32
+float c = 37.0;
+float f = c * 9 / 5 + 32;
+print c, " C = ", f, " F";

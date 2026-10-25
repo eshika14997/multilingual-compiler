@@ -1,0 +1,14 @@
+// Title: Largest of three numbers
+// Category: Basics
+// Keep the largest value seen so far
+int a = 12;
+int b = 45;
+int c = 30;
+int largest = a;
+if b > largest
+  set largest = b;
+end_if
+if c > largest
+  set largest = c;
+end_if
+print "Largest number : ", largest;

@@ -1,0 +1,14 @@
+// Title: GCD of two numbers
+// Category: Number programs
+// Euclid's algorithm
+int a = 48;
+int b = 18;
+int x = a;
+int y = b;
+int r = 0;
+while y != 0
+  set r = x % y;
+  set x = y;
+  set y = r;
+end_while
+print "GCD of ", a, " and ", b, " is ", x;
